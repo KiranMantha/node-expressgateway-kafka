@@ -9,6 +9,9 @@ Event-driven Microservices with nestjs, Kafka
 - run zookeeper through `bin/zookeeper-server-start.sh config/zookeeper.properties`
 - once zookeeper is up and running, in another terminal execute `bin/kafka-server-start.sh config/server.properties` to start kafka
 - once kafka is up and running, it need to have one topic before consuming it to emit and read events. for this in a new terminal execute `bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092`
+
+  > this is a one-time action.
+
 - this will create a topic named `quickstart-events`
 - to list out all the topics, execute `bin/kafka-topics.sh --bootstrap-server localhost:9092 --list`
 
@@ -41,5 +44,26 @@ root/
 └── users (kafka MS)
 ```
 
-- once kafka is up and running, cd to `api-gateway`
-- run `yarn start`
+- once kafka is up and running, start all micro-services parallelly
+- send a post request with below data in postman:
+
+```bash
+url:
+http://localhost:3010/create-invoice
+
+method:
+POST
+
+payload:
+{
+    "userId": "uid-123",
+    "orderId": "oid-123",
+    "price": 123.45
+}
+```
+
+once the request is made, check consoles of all the micro-services. each should log the data as per.
+
+# Next steps
+
+- implement a logging MS with mongodb

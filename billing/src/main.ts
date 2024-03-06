@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { AppModule } from './app.module';
+import { KafkaConsumers } from './tokens';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -12,7 +13,7 @@ async function bootstrap() {
           brokers: ['localhost:9092'] // kafka port
         },
         consumer: {
-          groupId: 'billing-consumer'
+          groupId: KafkaConsumers.BILLING_CONSUMER
         }
       }
     }

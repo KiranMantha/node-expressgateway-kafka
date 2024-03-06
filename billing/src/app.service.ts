@@ -1,12 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { ClientKafka } from '@nestjs/microservices';
+import { InjectionTokens } from './tokens';
 
 @Injectable()
 export class AppService {
+  constructor(
+    @Inject(InjectionTokens.USERS_SERVICE) private usersClient: ClientKafka
+  ) {}
+
   createInvoice(createInvoiceRequest: {
     userId: string;
     orderId: string;
     price: number;
   }) {
-    console.log(createInvoiceRequest);
+    this.usersClient.emit('log_user', {
+      userId: createInvoiceRequest?.userId || 'uid-123'
+    });
+    this.usersClient
+      .send('get_user_by_id', { userId: createInvoiceRequest.userId })
+      .subscribe((user: { userId: string; name: string }) => {
+        console.log('user from users MS: ', user);
+      });
   }
 }

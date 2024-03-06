@@ -16,7 +16,7 @@ import { InjectionTokens, KafkaConsumers } from './tokens';
             brokers: ['localhost:9092']
           },
           consumer: {
-            groupId: KafkaConsumers.BILLING_CONSUMERS
+            groupId: KafkaConsumers.BILLING_CONSUMER
           }
         }
       }

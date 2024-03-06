@@ -4,5 +4,5 @@ export enum InjectionTokens {
 }
 
 export enum KafkaConsumers {
-  BILLING_CONSUMERS = 'billing-consumers'
+  BILLING_CONSUMER = 'billing-consumer'
 }

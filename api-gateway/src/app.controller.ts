@@ -8,6 +8,7 @@ export class AppController {
 
   @Post('create-invoice')
   createInvoice(@Body() createInvoiceRequest: CreateInvoiceRequest) {
+    console.log('api-gateway:create-invoice ', createInvoiceRequest);
     this.appService.createInvoice(createInvoiceRequest);
   }
 }

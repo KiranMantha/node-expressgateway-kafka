@@ -11,7 +11,6 @@ export class AppService {
 
   createInvoice(createInvoiceRequest: CreateInvoiceRequest) {
     // emit event to billing service to create invoice
-    console.log(createInvoiceRequest);
     this.billingClient.emit('create_invoice', createInvoiceRequest);
   }
 }
