@@ -1,4 +1,4 @@
-# node-expressgateway-kafka
+# nestjs micro-services with kafka based event driven architecture
 
 Event-driven Microservices with nestjs, Kafka
 
