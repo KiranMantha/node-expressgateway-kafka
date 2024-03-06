@@ -4,6 +4,8 @@ Event-driven Microservices with nestjs, Kafka
 
 ## Install kafka
 
+### Without docker
+
 - download kafka tar file from [official site](https://kafka.apache.org/documentation/#quickstart)
 - extract the downloaded tar file and `cd` to that location
 - run zookeeper through `bin/zookeeper-server-start.sh config/zookeeper.properties`
@@ -14,6 +16,10 @@ Event-driven Microservices with nestjs, Kafka
 
 - this will create a topic named `quickstart-events`
 - to list out all the topics, execute `bin/kafka-topics.sh --bootstrap-server localhost:9092 --list`
+
+### With docker
+
+- run `docker compose up` in root folder. this will pull latest `zookeeper` & `kafka` packages and run them on their respective ports.
 
 ## Install mongodb
 
