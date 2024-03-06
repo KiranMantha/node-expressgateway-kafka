@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  createInvoice(createInvoiceRequest: {
+    userId: string;
+    orderId: string;
+    price: number;
+  }) {
+    console.log(createInvoiceRequest);
   }
 }

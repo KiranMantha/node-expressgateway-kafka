@@ -1,12 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { CreateInvoiceRequest } from './app.model';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('create-invoice')
+  createInvoice(@Body() createInvoiceRequest: CreateInvoiceRequest) {
+    this.appService.createInvoice(createInvoiceRequest);
   }
 }
