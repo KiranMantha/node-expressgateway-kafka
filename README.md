@@ -56,7 +56,8 @@ Folder structure:
 root/
 ├── api-gateway (express endpoint)
 ├── billing (kafka MS)
-└── users (kafka MS)
+├── users (kafka MS)
+└── logs (kafka MS)
 ```
 
 - once kafka is up and running, start all micro-services parallelly
