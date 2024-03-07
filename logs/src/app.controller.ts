@@ -1,12 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
+import { EventPattern } from '@nestjs/microservices';
 import { AppService } from './app.service';
+import { KafkaLogObject } from './logs.schema';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  // listen to 'insert_log' event and insert the log object into mongodb
+  @EventPattern('insert_log')
+  insertLog(data: KafkaLogObject) {
+    this.appService.insertLog(data);
   }
+
+  // @Post('insert-log')
+  // insertLog(@Body() data: KafkaLogObject) {
+  //   this.appService.insertLog(data);
+  // }
 }

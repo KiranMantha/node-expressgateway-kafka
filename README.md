@@ -80,6 +80,5 @@ payload:
 
 once the request is made, check consoles of all the micro-services. each should log the data as per.
 
-# Next steps
-
-- implement a logging MS with mongodb
+- all the kafka events will be logged into mongodb database by logs microservice through `mongoose`.
+- logs table contains `id (primary key auto-generated)`, `serviceName (type String)`, `kafkaTopic (type String)` and `kafkaData (type Object)`
