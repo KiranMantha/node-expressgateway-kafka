@@ -8,6 +8,7 @@ export class AppService {
   constructor(@InjectModel(Log.name) private logModel: Model<Log>) {}
 
   insertLog(record: KafkaLogObject) {
+    console.log('log MS:', record);
     this.logModel.insertMany([record]);
   }
 }

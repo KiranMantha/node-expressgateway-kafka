@@ -19,6 +19,19 @@ import { InjectionTokens, KafkaConsumers } from './tokens';
             groupId: KafkaConsumers.USERS_CONSUMER
           }
         }
+      },
+      {
+        name: InjectionTokens.LOGS_SERVICE,
+        transport: Transport.KAFKA,
+        options: {
+          client: {
+            clientId: 'logs',
+            brokers: ['localhost:9092']
+          },
+          consumer: {
+            groupId: KafkaConsumers.LOGS_CONSUMER
+          }
+        }
       }
     ])
   ],

@@ -7,7 +7,8 @@ import { InjectionTokens } from './tokens';
 export class AppController implements OnModuleInit {
   constructor(
     private readonly appService: AppService,
-    @Inject(InjectionTokens.USERS_SERVICE) private usersClient: ClientKafka
+    @Inject(InjectionTokens.USERS_SERVICE) private usersClient: ClientKafka,
+    @Inject(InjectionTokens.LOGS_SERVICE) private logsClient: ClientKafka
   ) {}
 
   // Event pattern only listen to incoming topic. it won't acknowledge back to emitter.
@@ -15,7 +16,11 @@ export class AppController implements OnModuleInit {
   // value will have same signature of 'CreateInvoiceRequest' in api-gateway
   @EventPattern('create_invoice')
   createInvoice(data: { userId: string; orderId: string; price: number }) {
-    console.log('billing MS:create_invoice', data);
+    this.logsClient.emit('insert_log', {
+      serviceName: 'billing',
+      kafkaTopic: 'create_invoice',
+      kafkaData: data
+    });
     this.appService.createInvoice(data);
   }
 
