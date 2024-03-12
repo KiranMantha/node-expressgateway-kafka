@@ -82,3 +82,7 @@ once the request is made, check consoles of all the micro-services. each should 
 
 - all the kafka events will be logged into mongodb database by logs microservice through `mongoose`.
 - logs table contains `id (primary key auto-generated)`, `serviceName (type String)`, `kafkaTopic (type String)` and `kafkaData (type Object)`
+
+## kafka UI
+
+https://medium.com/@penkov.vladimir/kafka-cluster-with-ui-and-metrics-easy-setup-d12d1b94eccf
